@@ -1,0 +1,27 @@
+name: 'Setup PHP'
+description: 'Setup PHP with required extensions and configurations for Laravel 11. Maintained by Salman@skdevelopers'
+author: 'Salman@skdevelopers'
+branding:
+  icon: 'code'
+  color: 'blue'
+
+inputs:
+  php-version:
+    description: 'The PHP version to setup'
+    required: true
+    default: '8.2'
+  extensions:
+    description: 'List of PHP extensions to install'
+    required: false
+    default: 'mbstring, xml, ctype, json, tokenizer, bcmath, curl, fileinfo, openssl, pdo_sqlite, sqlite3, pdo, zip'
+  ini-values:
+    description: 'PHP ini values'
+    required: false
+    default: |
+      memory_limit=2G
+      post_max_size=100M
+      upload_max_filesize=100M
+
+runs:
+  using: 'node18'
+  main: 'dist/index.js'
