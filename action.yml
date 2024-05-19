@@ -1,4 +1,4 @@
-name: 'Setup PHP'
+name: 'Setup PHP@8.2'
 description: 'Setup PHP with required extensions and configurations for Laravel 11. Maintained by Salman@skdevelopers'
 author: 'Salman@skdevelopers'
 branding:
