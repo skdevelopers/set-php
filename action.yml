@@ -1,27 +1,47 @@
-name: 'Setup PHP@8.2'
-description: 'Setup PHP with required extensions and configurations for Laravel 11. Maintained by Salman@skdevelopers'
-author: 'Salman@skdevelopers'
-branding:
-  icon: 'code'
-  color: 'blue'
+name: Laravel
 
-inputs:
-  php-version:
-    description: 'The PHP version to setup'
-    required: true
-    default: '8.2'
-  extensions:
-    description: 'List of PHP extensions to install'
-    required: false
-    default: 'mbstring, xml, ctype, json, tokenizer, bcmath, curl, fileinfo, openssl, pdo_sqlite, sqlite3, pdo, zip'
-  ini-values:
-    description: 'PHP ini values'
-    required: false
-    default: |
-      memory_limit=2G
-      post_max_size=100M
-      upload_max_filesize=100M
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
-runs:
-  using: 'node16'
-  main: 'dist/index.js'
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup PHP 8.2
+      uses: skdevelopers/set-php@v1.0.0
+      with:
+        php-version: '8.2'
+        extensions: mbstring, xml, ctype, json, tokenizer, bcmath, curl, fileinfo, openssl, pdo_sqlite, sqlite3, pdo, zip
+        ini-values: |
+          memory_limit=2G
+          post_max_size=100M
+          upload_max_filesize=100M
+
+    - name: Copy .env
+      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+    - name: Generate Application Key
+      run: php artisan key:generate
+
+    - name: Set Directory Permissions
+      run: chmod -R 777 storage bootstrap/cache
+
+    - name: Create SQLite Database
+      run: |
+        mkdir -p database
+        touch database/database.sqlite
+
+    - name: Execute Tests (Unit and Feature tests) via PHPUnit/Pest
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
+      run: php artisan test
