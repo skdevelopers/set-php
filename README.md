@@ -21,6 +21,9 @@ PHP ini values. Default is `memory_limit=2G`, `post_max_size=100M`, `upload_max_
 ```yaml
 steps:
   - name: Setup PHP
-    uses: skdevelopers/set-php@v82
+    uses: skdevelopers/set-php@v1.0.0
     with:
       php-version: '8.2'
+**`.github/workflows/release.yml`**:
+
+```yaml
