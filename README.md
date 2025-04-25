@@ -1,6 +1,6 @@
 # set-php
 
-GitHub Action to setup PHP with required extensions and configurations for Laravel 11. Maintained by Salman@skdevelopers.
+GitHub Action to setup PHP with required extensions and configurations for Laravel 11. Maintained by Salman@thinkdelivers.com.
 
 ## Inputs
 
