@@ -6,7 +6,7 @@ GitHub Action to setup PHP with required extensions and configurations for Larav
 
 ### `php-version`
 
-**Required** The PHP version to setup. Default `"8.2"`.
+**Required** The PHP version to setup. Default `"8.3"`.
 
 ### `extensions`
 
