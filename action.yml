@@ -13,7 +13,7 @@ inputs:
   extensions:
     description: 'List of PHP extensions to install'
     required: false
-    default: 'mbstring, xml, ctype, json, tokenizer, bcmath, curl, fileinfo, openssl, pdo_sqlite, sqlite3, pdo, zip'
+    default: 'mbstring, xml, ctype, tokenizer, bcmath, curl, fileinfo, openssl, pdo_sqlite, sqlite3, pdo, zip'
   ini-values:
     description: 'PHP ini values'
     required: false
