@@ -23,7 +23,7 @@ steps:
   - name: Setup PHP
     uses: skdevelopers/set-php@v1.0.0
     with:
-      php-version: '8.2'
+      php-version: '8.3'
 **`.github/workflows/release.yml`**:
 
 ```yaml

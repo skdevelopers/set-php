@@ -9,7 +9,7 @@ inputs:
   php-version:
     description: 'The PHP version to setup'
     required: true
-    default: '8.2'
+    default: '8.3'
   extensions:
     description: 'List of PHP extensions to install'
     required: false
